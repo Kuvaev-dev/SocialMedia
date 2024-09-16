@@ -81,6 +81,7 @@ const Login = () => {
 
             {errMsg?.message && (
               <span
+                role="alert"
                 className={`text-sm ${
                   errMsg?.status == "failed"
                     ? "text-[#f64949fe]"
