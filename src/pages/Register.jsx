@@ -56,11 +56,11 @@ const Register = () => {
         {/* LEFT */}
         <div className="w-full lg:w-1/2 h-full p-10 2xl:px-20 flex flex-col justify-center">
           <div className="w-full flex gap-2 items-center mb-6">
-            <div className="p-2 bg-[#065ad8] rounded text-white">
+            <div className="p-2 bg-[#469c40] rounded text-white">
               <TbSocial />
             </div>
-            <span className="text-2xl text-[#065ad8] font-semibold">
-              Sharefun
+            <span className="text-2xl text-[#469c40] font-semibold">
+              K-Share
             </span>
           </div>
 
@@ -161,7 +161,7 @@ const Register = () => {
             ) : (
               <CustomButton
                 type="submit"
-                containerStyles={`inline-flex justify-center rounded-md bg-blue px-8 py-3 text-sm font-medium text-white outline-none`}
+                containerStyles={`inline-flex justify-center rounded-md bg-[#469c40] px-8 py-3 text-sm font-medium text-white outline-none`}
                 title="Create Account"
               />
             )}
@@ -171,14 +171,14 @@ const Register = () => {
             Already have an account?
             <Link
               to="/login"
-              className="text-[#065ad8] font-semibold ml-2 cursor-pointer"
+              className="text-[#469c40] font-semibold ml-2 cursor-pointer"
             >
               Login
             </Link>
           </p>
         </div>
         {/* RIGHT */}
-        <div className="hidden w-1/2 h-full lg:flex flex-col items-center justify-center bg-blue">
+        <div className="hidden w-1/2 h-full lg:flex flex-col items-center justify-center bg-[#469c40]">
           <div className="relative w-full flex items-center justify-center">
             <img
               src={BgImage}

@@ -22,6 +22,7 @@ import {
   getUserInfo,
   likePost,
   sendFriendRequest,
+  handleFileUpload
 } from "../utils";
 import { UserLogin } from "../redux/userSlice";
 

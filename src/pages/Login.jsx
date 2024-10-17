@@ -58,18 +58,18 @@ const Login = () => {
         {/* LEFT */}
         <div className="w-full lg:w-1/2 h-full p-10 2xl:px-20 flex flex-col justify-center">
           <div className="w-full flex gap-2 items-center mb-6">
-            <div className="p-2 bg-[#065ad8] rounded text-white">
+            <div className="p-2 bg-[#469c40] rounded text-white">
               <TbSocial />
             </div>
-            <span className="text-2xl text-[#065ad8]" font-semibold>
-              Sharefun
+            <span className="text-2xl text-[#469c40]" font-semibold>
+              K-Share
             </span>
           </div>
 
           <p className="text-ascent-1 text-base font-semibold">
             Log in to your account
           </p>
-          <span className="text-sm mt-2 text-ascent-2">Welcome back</span>
+          <span className="text-sm mt-2 text-ascent-2">Welcome back!</span>
 
           <form
             className="py-8 flex flex-col gap-5"
@@ -101,7 +101,7 @@ const Login = () => {
             />
             <Link
               to="/reset-password"
-              className="text-sm text-right text-blue font-semibold"
+              className="text-sm text-right text-[#469c40] font-semibold"
             >
               Forgot Password?
             </Link>
@@ -110,7 +110,7 @@ const Login = () => {
               <span
                 role="alert"
                 className={`text-sm ${
-                  errMsg?.status == "failed"
+                  errMsg?.status === "failed"
                     ? "text-[#f64949fe]"
                     : "text-[#2ba150fe]"
                 } mt-0.5`}
@@ -124,7 +124,7 @@ const Login = () => {
             ) : (
               <CustomButton
                 type="submit"
-                containerStyles={`inline-flex justify-center rounded-md bg-blue px-8 py-3 text-sm font-medium text-white outline-none`}
+                containerStyles={`inline-flex justify-center rounded-md bg-[#469c40] px-8 py-3 text-sm font-medium text-white outline-none`}
                 title="Login"
               />
             )}
@@ -134,14 +134,14 @@ const Login = () => {
             Don't have an account?
             <Link
               to="/register"
-              className="text-[#065ad8] font-semibold ml-2 cursor-pointer"
+              className="text-[#4ead47] font-semibold ml-2 cursor-pointer"
             >
               Create Account
             </Link>
           </p>
         </div>
         {/* RIGHT */}
-        <div className="hidden w-1/2 h-full lg:flex flex-col items-center justify-center bg-blue">
+        <div className="hidden w-1/2 h-full lg:flex flex-col items-center justify-center bg-[#469c40]">
           <div className="relative w-full flex items-center justify-center">
             <img
               src={BgImage}

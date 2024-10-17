@@ -15,7 +15,7 @@ import { NoProfile } from "../assets";
 import moment from "moment";
 
 const ProfileCard = ({ user }) => {
-  const { user: data, edit } = useSelector((state) => state.user);
+  const { user: data } = useSelector((state) => state.user);
   const dispatch = useDispatch();
 
   return (
@@ -41,7 +41,7 @@ const ProfileCard = ({ user }) => {
             {user?._id === data?._id ? (
               <LiaEditSolid
                 size={22}
-                className="text-blue cursor-pointer"
+                className="text-[#469c40] cursor-pointer"
                 onClick={() => dispatch(UpdateProfile(true))}
               />
             ) : (

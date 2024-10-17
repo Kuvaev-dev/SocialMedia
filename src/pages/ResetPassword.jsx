@@ -78,7 +78,7 @@ const ResetPassword = () => {
           ) : (
             <CustomButton
               type="submit"
-              containerStyles={`inline-flex justify-center rounded-md bg-blue px-8 py-3 text-sm font-medium text-white outline-none`}
+              containerStyles={`inline-flex justify-center rounded-md bg-[#469c40] px-8 py-3 text-sm font-medium text-white outline-none`}
               title="Submit"
             />
           )}

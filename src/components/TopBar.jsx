@@ -28,16 +28,16 @@ const TopBar = () => {
   };
 
   const handleSearch = async (data) => {
-    await fetchPosts(user.token,dispatch,"",data)
+    await fetchPosts(user.token, dispatch, "", data);
   };
 
   return (
     <div className="topbar w-full flex items-center justify-between py-3 md:py-6 px-4 bg-primary">
       <Link to="/" className="flex gap-2 items-center">
-        <div className="p-1 md:p-2 bg-[#065ad8] rounded text-white">
+        <div className="p-1 md:p-2 bg-[#469c40] rounded text-white">
           <TbSocial />
         </div>
-        <span className="text-xl md:text-2xl text-[#065ad8] font-semibold">
+        <span className="text-xl md:text-2xl text-[#469c40] font-semibold">
           Sharefun
         </span>
       </Link>

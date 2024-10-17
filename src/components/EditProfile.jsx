@@ -6,7 +6,7 @@ import TextInput from "./TextInput";
 import Loading from "./Loading";
 import CustomButton from "./CustomButton";
 import { UpdateProfile, UserLogin } from "../redux/userSlice";
-import { apiRequest } from "../utils";
+import { apiRequest, handleFileUpload } from "../utils";
 
 const EditProfile = () => {
   const { user } = useSelector((state) => state.user);
@@ -181,7 +181,7 @@ const EditProfile = () => {
                 ) : (
                   <CustomButton
                     type="submit"
-                    containerStyles={`inline-flex justify-center rounded-md bg-blue px-8 py-3 text-sm font-medium text-white outline-none`}
+                    containerStyles={`inline-flex justify-center rounded-md bg-[#469c40] px-8 py-3 text-sm font-medium text-white outline-none`}
                     title="Submit"
                   />
                 )}

@@ -124,7 +124,7 @@ const CommentForm = ({ user, id, replyAt, getComments }) => {
       <div className="w-full flex items-center gap-2 py-4">
         <img
           src={user?.profileUrl ?? NoProfile}
-          alt="User Image"
+          alt="User"
           className="w-10 h-10 rounded-full object-cover"
         />
         <TextInput
@@ -157,7 +157,7 @@ const CommentForm = ({ user, id, replyAt, getComments }) => {
           <CustomButton
             title="Submit"
             type="submit"
-            containerStyles="bg-[#0444a4] text-white py-1 px-3 rounded-full font-semibold text-sm"
+            containerStyles="bg-[#469c40] text-white py-1 px-3 rounded-full font-semibold text-sm"
           />
         )}
       </div>
@@ -240,7 +240,7 @@ const PostCard = ({ post, user, deletePost, likePost }) => {
         {post?.image && (
           <img
             src={post?.image}
-            alt="Post Image"
+            alt="Post"
             className="w-full mt-2 rounded-lg"
           />
         )}
@@ -324,14 +324,14 @@ const PostCard = ({ post, user, deletePost, likePost }) => {
                       }}
                     >
                       {comment?.likes?.includes(user?._id) ? (
-                        <BiSolidLike size={20} color="blue" />
+                        <BiSolidLike size={20} color="#469c40" />
                       ) : (
                         <BiLike size={20} />
                       )}
                       {comment?.likes?.length} Likes
                     </p>
                     <span
-                      className="text-blue cursor-pointer"
+                      className="text-[#469c40] cursor-pointer"
                       onClick={() => setReplyComments(comment?._id)}
                     >
                       Reply
