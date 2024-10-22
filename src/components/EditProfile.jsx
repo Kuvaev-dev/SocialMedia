@@ -116,9 +116,10 @@ const EditProfile = () => {
               />
 
               <TextInput
+                name="lastName"
                 label="Last Name"
                 placeholder="Last Name"
-                type="lastName"
+                type="text"
                 styles="w-full"
                 register={register("lastName", {
                   required: "Last Name do no match",

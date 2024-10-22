@@ -61,14 +61,12 @@ const Login = () => {
             <div className="p-2 bg-[#469c40] rounded text-white">
               <TbSocial />
             </div>
-            <span className="text-2xl text-[#469c40]" font-semibold>
+            <span className="text-2xl text-[#469c40] font-semibold">
               K-Share
             </span>
           </div>
 
-          <p className="text-ascent-1 text-base font-semibold">
-            Log in to your account
-          </p>
+          <p className="text-ascent-1 text-base">Log in to your account</p>
           <span className="text-sm mt-2 text-ascent-2">Welcome back!</span>
 
           <form
@@ -132,10 +130,7 @@ const Login = () => {
 
           <p className="text-ascent-2 text-sm text-center">
             Don't have an account?
-            <Link
-              to="/register"
-              className="text-[#4ead47] font-semibold ml-2 cursor-pointer"
-            >
+            <Link to="/register" className="text-[#4ead47] ml-2 cursor-pointer">
               Create Account
             </Link>
           </p>

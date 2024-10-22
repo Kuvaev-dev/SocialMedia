@@ -38,7 +38,7 @@ const TopBar = () => {
           <TbSocial />
         </div>
         <span className="text-xl md:text-2xl text-[#469c40] font-semibold">
-          Sharefun
+          K-Share
         </span>
       </Link>
 
@@ -54,7 +54,7 @@ const TopBar = () => {
         <CustomButton
           title="Search"
           type="submit"
-          containerStyles="bg-[#0444a4] text-white px-6 py-2.5 mt-2 rounded-r-full"
+          containerStyles="bg-[#469c40] text-white px-6 py-2.5 mt-2 rounded-r-full"
         />
       </form>
       {/* ICONS */}

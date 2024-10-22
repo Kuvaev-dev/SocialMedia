@@ -22,7 +22,7 @@ import {
   getUserInfo,
   likePost,
   sendFriendRequest,
-  handleFileUpload
+  handleFileUpload,
 } from "../utils";
 import { UserLogin } from "../redux/userSlice";
 
@@ -152,12 +152,24 @@ const Home = () => {
   };
 
   useEffect(() => {
-    setLoading(true);
-    getUser();
-    fetchPost();
-    fetchFriendRequests();
-    fetchSuggestedFriends();
-  });
+    const fetchData = async () => {
+      setLoading(true);
+      try {
+        await getUser();
+        await fetchPost();
+        await fetchFriendRequests();
+        await fetchSuggestedFriends();
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    if (user?.token) {
+      fetchData();
+    }
+  }, [user?.token, dispatch]);
 
   return (
     <>
@@ -262,7 +274,7 @@ const Home = () => {
                     <CustomButton
                       type="submit"
                       title="Post"
-                      containerStyles="bg-[#0444a4] text-white py-1 px-6 rounded-full font-semibold text-sm"
+                      containerStyles="bg-[#469c40] text-white py-1 px-6 rounded-full font-semibold text-sm"
                     />
                   )}
                 </div>
@@ -322,12 +334,12 @@ const Home = () => {
                     <div className="flex gap-1">
                       <CustomButton
                         title="Accept"
-                        containerStyles="bg-[#0444a4] text-xs text-white px-1.5 py-1 rounded-full"
+                        containerStyles="bg-[#469c40] text-xs text-white px-1.5 py-1 rounded-full"
                         onClick={() => acceptFriendRequest(_id, "Accepted")}
                       />
                       <CustomButton
                         title="Deny"
-                        containerStyles="border border-[#666] text-xs text-ascent-1 px-1.5 py-1 rounded-full"
+                        containerStyles="border border-[#666] bg-[#469c40] text-xs text-ascent-1 px-1.5 py-1 rounded-full"
                         onClick={() => acceptFriendRequest(_id, "Denied")}
                       />
                     </div>
@@ -369,10 +381,10 @@ const Home = () => {
 
                     <div className="flex gap-1">
                       <button
-                        className="bg-[#0444a430] text-sm text-white p-1 rounded"
+                        className="bg-[#469c4030] text-sm text-white p-1 rounded"
                         onClick={() => handleFriendRequest(friend?._id)}
                       >
-                        <BsPersonFillAdd size={20} className="text-[#0f52b6]" />
+                        <BsPersonFillAdd size={20} className="text-[#469c40]" />
                       </button>
                     </div>
                   </div>

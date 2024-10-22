@@ -46,10 +46,10 @@ const ProfileCard = ({ user }) => {
               />
             ) : (
               <button
-                className="bg-[#0444a430] text-sm text-white p-1 rounded"
+                className="bg-[#469c4030] text-sm text-white p-1 rounded"
                 onClick={() => {}}
               >
-                <BsPersonFillAdd size={20} className="text-[#0f52b6]" />
+                <BsPersonFillAdd size={20} className="text-[#469c40]" />
               </button>
             )}
           </div>
@@ -72,7 +72,7 @@ const ProfileCard = ({ user }) => {
             <span className="text-ascent-2">Who viewed your profile</span>
             <span className="text-ascent-1 text-lg">{user?.views?.length}</span>
           </div>
-          <span className="text-base text-blue">
+          <span className="text-base text-[#469c40]">
             {user?.verified ? "Verified Account" : "Not Verified"}
           </span>
           <div className="flex items-center justify-between">
