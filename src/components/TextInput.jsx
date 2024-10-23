@@ -2,13 +2,13 @@ import React from "react";
 
 const TextInput = React.forwardRef(
   (
-    { type, placeholder, styles, label, labelStyles, register, name, error },
+    { type, placeholder, styles, label, labelStyle, register, name, error },
     ref
   ) => {
     return (
       <div className="w-full flex flex-col mt-2">
         {label && (
-          <p className={`text-ascent-2 text-sm mb-2 ${labelStyles}`}>{label}</p>
+          <p className={`text-ascent-2 text-sm mb-1 ${labelStyle}`}>{label}</p>
         )}
 
         <div>
@@ -23,7 +23,7 @@ const TextInput = React.forwardRef(
           />
         </div>
         {error && (
-          <span className="text-xs text-[#f64949fe] mt-0.5">{error}</span>
+          <span className="text-xs text-[#f64949fe] mt-0.5 ">{error}</span>
         )}
       </div>
     );

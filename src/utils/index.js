@@ -1,7 +1,7 @@
 import axios from "axios";
 import { SetPosts } from "../redux/postSlice";
 
-const API_URL = "http://localhost:8800/";
+const API_URL = "http://localhost:8800";
 
 export const API = axios.create({
   baseURL: API_URL,
@@ -30,23 +30,29 @@ export const apiRequest = async ({ url, token, data, method }) => {
 export const handleFileUpload = async (uploadFile) => {
   const formData = new FormData();
   formData.append("file", uploadFile);
-  formData.append("upload_present", "social_media");
+  formData.append("upload_preset", "social-media-image-cloud");
 
   try {
     const response = await axios.post(
       `https://api.cloudinary.com/v1_1/${process.env.REACT_APP_CLOUDINARY_ID}/image/upload/`,
       formData
     );
-    return response.data.secure_url;
+
+    if (response.status === 200) {
+      return response.data.secure_url;
+    } else {
+      throw new Error("Failed to upload image.");
+    }
   } catch (error) {
-    console.log(error);
+    console.error("Error uploading file:", error);
+    throw error;
   }
 };
 
-export const fetchPosts = async (token, dispatch, uri, data) => {
+export async function fetchPosts(token, dispatch, uri, data) {
   try {
     const res = await apiRequest({
-      uri: uri || "/posts",
+      url: uri || "/posts",
       token: token,
       method: "POST",
       data: data || {},
@@ -57,12 +63,12 @@ export const fetchPosts = async (token, dispatch, uri, data) => {
   } catch (error) {
     console.log(error);
   }
-};
+}
 
 export const likePost = async ({ uri, token }) => {
   try {
     const res = await apiRequest({
-      uri: uri,
+      url: uri,
       token: token,
       method: "POST",
     });
@@ -80,8 +86,6 @@ export const deletePost = async (id, token) => {
       token: token,
       method: "DELETE",
     });
-
-    return;
   } catch (error) {
     console.log(error);
   }
@@ -117,8 +121,6 @@ export const sendFriendRequest = async (token, id) => {
       method: "POST",
       data: { requestTo: id },
     });
-
-    return;
   } catch (error) {
     console.log(error);
   }
@@ -132,8 +134,6 @@ export const viewUserProfile = async (token, id) => {
       method: "POST",
       data: { id },
     });
-
-    return;
   } catch (error) {
     console.log(error);
   }

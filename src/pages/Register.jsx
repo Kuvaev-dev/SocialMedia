@@ -1,25 +1,23 @@
 import React, { useState } from "react";
 import { TbSocial } from "react-icons/tb";
-import { BsShare } from "react-icons/bs";
 import { ImConnection } from "react-icons/im";
+import { BsShare } from "react-icons/bs";
 import { AiOutlineInteraction } from "react-icons/ai";
-import { TextInput, Loading, CustomButton } from "../components";
+import { CustomButton, Loading, TextInput } from "../components";
 import { useForm } from "react-hook-form";
+import BgImg from "../assets/img.png";
 import { Link } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { BgImage } from "../assets";
 import { apiRequest } from "../utils";
 
 const Register = () => {
   const [errMsg, setErrMsg] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const dispatch = useDispatch();
-
   const {
     register,
     handleSubmit,
     getValues,
+    watch,
     formState: { errors },
   } = useForm({
     mode: "onChange",
@@ -27,6 +25,7 @@ const Register = () => {
 
   const onSubmit = async (data) => {
     setIsSubmitting(true);
+
     try {
       const res = await apiRequest({
         url: "/auth/register",
@@ -38,11 +37,10 @@ const Register = () => {
         setErrMsg(res);
       } else {
         setErrMsg(res);
-        setTimeout(() => {
+        setInterval(() => {
           window.location.replace("/login");
         }, 5000);
       }
-
       setIsSubmitting(false);
     } catch (error) {
       console.log(error);
@@ -51,11 +49,11 @@ const Register = () => {
   };
 
   return (
-    <div className="bg-bgColor w-full h-[100vh] flex items-center justify-center p-6">
-      <div className="w-full md:w-2/3 h-fit lg:h-full 2xl:h-5/6 py-8 lg:py-0 flex flex-row-reverse bg-primary rounded-xl overflow-hidden shadow-xl">
+    <div className="w-full h-[100vh] bg-bgColor flex items-center justify-center p-6 2xl:py-10">
+      <div className="w-full md:w-2/3 h-fit lg:h-full 2xl:h-full py-8 lg:py-0 flex flex-row-reverse bg-primary rounded-xl overflow-hidden shadow-xl">
         {/* LEFT */}
-        <div className="w-full lg:w-1/2 h-full p-10 2xl:px-20 flex flex-col justify-center">
-          <div className="w-full flex gap-2 items-center mb-6">
+        <div className="w-full lg:w-1/2 h-full px-6 lg:p-10 2xl:px-20 flex flex-col justify-center">
+          <div className="w-full flex gap-2 items-center mb-3 2xl:mb-6">
             <div className="p-2 bg-[#469c40] rounded text-white">
               <TbSocial />
             </div>
@@ -63,52 +61,51 @@ const Register = () => {
               K-Share
             </span>
           </div>
-
           <p className="text-ascent-1 text-base font-semibold">
             Create your account
           </p>
 
           <form
-            className="py-8 flex flex-col gap-5"
+            className="py-4 2xl:py-8 flex flex-col gap-3 2xl:gap-6"
             onSubmit={handleSubmit(onSubmit)}
           >
             <div className="w-full flex flex-col lg:flex-row gap-1 md:gap-2">
               <TextInput
                 name="firstName"
-                placeholder="First Name"
                 label="First Name"
+                placeholder="First Name"
                 type="text"
+                styles="w-full"
                 register={register("firstName", {
-                  required: "First Name is required",
+                  required: "First Name is required!",
                 })}
-                styles="w-full"
-                labelStyle="ml-2"
-                error={errors.firstName ? errors.firstName.message : ""}
+                error={errors.firstName ? errors.firstName?.message : ""}
               />
+
               <TextInput
-                name="lastName"
-                placeholder="Last Name"
                 label="Last Name"
-                type="text"
-                register={register("lastName", {
-                  required: "Last Name is required",
-                })}
+                placeholder="Last Name"
+                type="lastName"
                 styles="w-full"
-                labelStyle="ml-2"
-                error={errors.lastName ? errors.lastName.message : ""}
+                register={register("lastName", {
+                  required: "Last Name do no match",
+                })}
+                error={errors.lastName ? errors.lastName?.message : ""}
               />
             </div>
+
             <TextInput
               name="email"
-              placeholder="email@example.com"
               label="Email Address"
+              placeholder="email@example.com"
               type="email"
               register={register("email", {
-                required: "Email Address is required",
+                required: "Email Address is required!",
               })}
               styles="w-full"
               error={errors.email ? errors.email.message : ""}
             />
+
             <div className="w-full flex flex-col lg:flex-row gap-1 md:gap-2">
               <TextInput
                 name="password"
@@ -117,12 +114,12 @@ const Register = () => {
                 type="password"
                 styles="w-full"
                 register={register("password", {
-                  required: "Password is required",
+                  required: "Password is required!",
                 })}
                 error={errors.password ? errors.password?.message : ""}
               />
+
               <TextInput
-                name="password"
                 label="Confirm Password"
                 placeholder="Password"
                 type="password"
@@ -130,13 +127,14 @@ const Register = () => {
                 register={register("cPassword", {
                   validate: (value) => {
                     const { password } = getValues();
+
                     if (password != value) {
-                      return "Passwords do not match";
+                      return "Passwords do no match";
                     }
                   },
                 })}
                 error={
-                  errors.cPassword && errors.cPassword?.type === "validate"
+                  errors.cPassword && errors.cPassword.type === "validate"
                     ? errors.cPassword?.message
                     : ""
                 }
@@ -147,7 +145,7 @@ const Register = () => {
               <span
                 role="alert"
                 className={`text-sm ${
-                  errMsg?.status == "failed"
+                  errMsg?.status === "failed"
                     ? "text-[#f64949fe]"
                     : "text-[#2ba150fe]"
                 } mt-0.5`}
@@ -161,14 +159,14 @@ const Register = () => {
             ) : (
               <CustomButton
                 type="submit"
-                containerStyles={`inline-flex justify-center rounded-md bg-[#469c40] px-8 py-3 text-sm font-medium text-white outline-none`}
+                containerStyles={`inline-flex justify-center rounded-md bg-[#469c40] px-8 py-3 text-sm font-medium text-white outline-none mt-5 2xl:mt-8`}
                 title="Create Account"
               />
             )}
           </form>
 
           <p className="text-ascent-2 text-sm text-center">
-            Already have an account?
+            Already has an account?{" "}
             <Link
               to="/login"
               className="text-[#469c40] font-semibold ml-2 cursor-pointer"
@@ -179,13 +177,12 @@ const Register = () => {
         </div>
         {/* RIGHT */}
         <div className="hidden w-1/2 h-full lg:flex flex-col items-center justify-center bg-[#469c40]">
-          <div className="relative w-full flex items-center justify-center">
+          <div className="relative w-full flex  items-center justify-center">
             <img
-              src={BgImage}
+              src={BgImg}
               alt="Bg Image"
-              className="w-48 2xl:w-64 h-48 2xl:h-64 rounded-full object-center"
+              className="w-48 2xl:w-64 h-48 2xl:h-64 rounded-full object-cover"
             />
-
             <div className="absolute flex items-center gap-1 bg-white right-10 top-10 py-2 px-5 rounded-full">
               <BsShare size={14} />
               <span className="text-xs font-medium">Share</span>
@@ -202,10 +199,10 @@ const Register = () => {
 
           <div className="mt-16 text-center">
             <p className="text-white text-base">
-              Connect with friends & have share for fun
+              Connect with friedns & have share for fun
             </p>
             <span className="text-sm text-white/80">
-              Share memories with friends and the world
+              Share memories with friends and the world.
             </span>
           </div>
         </div>

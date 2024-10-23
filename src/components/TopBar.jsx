@@ -1,29 +1,30 @@
-import React from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
 import { TbSocial } from "react-icons/tb";
-import { TextInput, CustomButton } from "../components";
-import { useForm } from "react-hook-form";
 import { BsMoon, BsSunFill } from "react-icons/bs";
 import { IoMdNotificationsOutline } from "react-icons/io";
+import { Link } from "react-router-dom";
+import CustomButton from "./CustomButton";
+import TextInput from "./TextInput";
+import { useSelector, useDispatch } from "react-redux";
 import { SetTheme } from "../redux/theme";
 import { Logout } from "../redux/userSlice";
 import { fetchPosts } from "../utils";
+import { useForm } from "react-hook-form";
 
 const TopBar = () => {
   const { theme } = useSelector((state) => state.theme);
   const { user } = useSelector((state) => state.user);
-
   const dispatch = useDispatch();
-
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm();
+  } = useForm({
+    mode: "onChange",
+  });
 
   const handleTheme = () => {
     const themeValue = theme === "light" ? "dark" : "light";
+
     dispatch(SetTheme(themeValue));
   };
 
@@ -41,14 +42,13 @@ const TopBar = () => {
           K-Share
         </span>
       </Link>
-
       <form
         className="hidden md:flex items-center justify-center"
         onSubmit={handleSubmit(handleSearch)}
       >
         <TextInput
           placeholder="Search..."
-          styles="w-[18rem] lg:w-[38rem] rounded-l-full py-3"
+          styles="w-[18rem] lg:w-[38rem]  rounded-l-full py-3 "
           register={register("search")}
         />
         <CustomButton
@@ -65,11 +65,12 @@ const TopBar = () => {
         <div className="hidden lg:flex">
           <IoMdNotificationsOutline />
         </div>
+
         <div>
           <CustomButton
             onClick={() => dispatch(Logout())}
             title="Log Out"
-            containerStyles="text-sm text-ascent-1 px-4 md:px-6 py-1 md:py-2 border-[#666] rounded-full"
+            containerStyles="text-sm text-ascent-1 px-4 md:px-6 py-1 md:py-2 border border-[#666] rounded-full"
           />
         </div>
       </div>
