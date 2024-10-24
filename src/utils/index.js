@@ -30,7 +30,7 @@ export const apiRequest = async ({ url, token, data, method }) => {
 export const handleFileUpload = async (uploadFile) => {
   const formData = new FormData();
   formData.append("file", uploadFile);
-  formData.append("upload_preset", "social-media-image-cloud");
+  formData.append("upload_preset", "social_media");
 
   try {
     const response = await axios.post(

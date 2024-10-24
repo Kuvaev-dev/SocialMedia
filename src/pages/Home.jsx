@@ -54,6 +54,13 @@ const Home = () => {
   const onSubmitPost = async (data) => {
     setPosting(true);
     setErrMsg("");
+
+    if (file && file.size > 5120 * 1024) {
+      setErrMsg("File size exceeds 5MB limit.");
+      setPosting(false);
+      return;
+    }
+
     try {
       const uri = file && (await handleFileUpload(file));
 
@@ -167,7 +174,7 @@ const Home = () => {
           </div>
 
           {/* CENTER */}
-          <div className=" flex-1 h-full bg-orimary px-4 flex flex-col gap-6 overflow-y-auto">
+          <div className=" flex-1 h-full bg-primary px-4 flex flex-col gap-6 overflow-y-auto">
             <form
               className="bg-primary px-4 rounded-lg"
               onSubmit={handleSubmit(onSubmitPost)}
@@ -212,7 +219,6 @@ const Home = () => {
                     onChange={(e) => setFile(e.target.files[0])}
                     className="hidden"
                     id="imgUpload"
-                    data-max-size="5120"
                     accept=".jpg, .png, .jpeg"
                   />
                   <BiImages />

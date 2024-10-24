@@ -123,11 +123,10 @@ const CommentForm = ({ user, id, replyAt, getComments }) => {
     >
       <div className="w-full flex items-center gap-2 py-4 ">
         <img
-          src={user?.profileUrl}
+          src={user.profileUrl}
           alt="User Image"
           className="w-10 h-10 rounded-full object-cover"
         />
-
         <TextInput
           name="comment"
           styles="w-full rounded-full py-3"
@@ -207,7 +206,7 @@ const PostCard = ({ post, user, deletePost, likePost }) => {
           </div>
 
           <span className="text-ascent-2">
-            {moment(post?.createdAt ?? "2023-05-25").fromNow()}
+            {moment(post?.createdAt ?? "1999-01-01").fromNow()}
           </span>
         </div>
       </div>
@@ -238,7 +237,7 @@ const PostCard = ({ post, user, deletePost, likePost }) => {
         {post?.image && (
           <img
             src={post?.image}
-            alt="Post image"
+            alt="Post Image"
             className="w-full mt-2 rounded-lg"
           />
         )}
