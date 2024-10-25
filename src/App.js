@@ -1,5 +1,13 @@
 import { Outlet, Navigate, Route, Routes, useLocation } from "react-router-dom";
-import { Home, Profile, Register, Login, ResetPassword } from "./pages";
+import {
+  Home,
+  Profile,
+  Register,
+  Login,
+  ResetPassword,
+  ChangePassword,
+  EmailVerificationSuccess,
+} from "./pages";
 import { useSelector } from "react-redux";
 
 function Layout() {
@@ -27,6 +35,8 @@ function App() {
         <Route path="/register" element={<Register />}></Route>
         <Route path="/login" element={<Login />}></Route>
         <Route path="/reset-password" element={<ResetPassword />}></Route>
+        <Route path="/change-password" element={<ChangePassword />}></Route>
+        <Route path="/success" element={<EmailVerificationSuccess />}></Route>
       </Routes>
     </div>
   );
